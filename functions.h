@@ -31,7 +31,7 @@ void LOAD ()
     int f=0;
     system("cls");
     FILE *fRptr ;
-    fRptr = fopen("a_example.txt","r");
+    fRptr = fopen("b_lovely_landscapes.txt","r");
     if (fRptr == NULL)
     {
         printf("\n");
@@ -164,7 +164,7 @@ void arr(int start){
                 next = j;
             }
         }
-        if(f==0){
+        if(f==0 && i!=start){
             break;
         }
         photos[i].f_used=1;
@@ -182,6 +182,26 @@ void arr(int start){
 //-------------------------------------------------------------------------
 /*************************************find maximum score***********************************/
 int max_score(){
+   int  maximum = ans_score[0];
+    int c;
+  for ( c = 1; c < score_count; c++)
+  {
+    if (ans[c] > maximum)
+    {
+       maximum  = ans_score[c];
+
+    }
+
+  }
+ // printf("###############%d",maximum);
+  return c;
+}
+//-----------------------------
+/**************set used to zero**************/
+void zero(){
+    for(int i=0;i<Num_photos;i++){
+        photos[i].f_used=0;
+    }
 
 }
 
