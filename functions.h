@@ -16,6 +16,7 @@ photo photos[100000];
 int ans[2][100000];
 int ans_score;
 //int score_count=0;
+int numOfUsed=0;
 
 
 id1=-1;  id2=-1; int Num_photos=0;   int J =0;
@@ -83,6 +84,7 @@ void LOAD ()
             }
             flagl=1;
          }
+         photos[J].f_used=0;
     }
             fclose(fRptr);
 }
@@ -145,6 +147,7 @@ int factor(int photo1,int photo2 )
 	}
 
 }
+
 //------------------------------------------------------
 /******************arrange with start***************/
 void arrange(int start){
@@ -153,8 +156,12 @@ void arrange(int start){
     int next;
     ans[0][counter]=photos[start].id1;
     counter++;
+  //  if (photos[start].f_used) return ;
+
+
     for(int i =start ; counter<Num_photos;){
             int bestFactor=0;
+
         for(int j=0;j<Num_photos;j++)
             {
                 if(i==j)
@@ -179,6 +186,7 @@ void arrange(int start){
     }
     counter++;
      ans_score=score;
+     numOfUsed=counter;
      //score_count++;
 
 

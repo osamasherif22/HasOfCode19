@@ -7,7 +7,7 @@ int main()
  {
     LOAD();
      //print the file
-    printf("*%d*\n",Num_photos);
+    /*printf("*%d*\n",Num_photos);
 for (int i=0;i<Num_photos;i++)
 {
     //printf("%d",i);
@@ -17,7 +17,8 @@ for (int i=0;i<Num_photos;i++)
     printf("[%s]",photos[i].tags[j]);
     }
     printf("\n");
-}
+}*/
+printf("************load sucssfully****************** \n");
 //DP>>>>>>>>>>
 for(int i=0 ; i<2 ; i++){
     for(int j=0 ; j<100000 ; j++){
@@ -40,15 +41,31 @@ for(int i=0 ; i<2 ; i++){
      z++;
      printf(" %d\n",ans_score[score_count]);*/
      //for(int i=0;i<Num_photos;i++){
+
         arrange(488);
-        zero();
+                    int k =0 ;
+
+                    numOfUsed--;
+        for(k;k<Num_photos;k++)
+        {
+
+       if(!photos[k].f_used&&photos[k].type!='N')
+       {
+        photos[k].f_used=1;
+        ans[0][numOfUsed]=photos[k].id1;
+        numOfUsed++;
+        printf("oooo\n");
+
+       }
+                    }
+       // zero();
      //}
      //int x =max_score();
      int z=0;
      int co=0;
      FILE*fptr;
-     fptr=fopen("b-fileOutput.txt","w+");
-    while(ans[0][z]!=-1){
+     fptr=fopen("new_bfileOutput.txt","w+");
+    while(z!=numOfUsed){
         printf("%d",ans[0][z]);
         fprintf(fptr,"%d",ans[0][z]);
         co++;
@@ -76,7 +93,7 @@ for(int i=0 ; i<2 ; i++){
         printf("%d\n",ans_score);
         //printf("max is :::%d\n",ans_score[x]);
      //}
-     free(fptr);
+     fclose(fptr);
 
 
 
