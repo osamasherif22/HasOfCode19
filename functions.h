@@ -13,9 +13,9 @@ typedef struct {
   int f_used ;
 }photo;
 photo photos[100000];
-int ans[10000][10000];
-int ans_score[100000];
-int score_count=0;
+int ans[2][100000];
+int ans_score;
+//int score_count=0;
 
 
 id1=-1;  id2=-1; int Num_photos=0;   int J =0;
@@ -147,41 +147,45 @@ int factor(int photo1,int photo2 )
 }
 //------------------------------------------------------
 /******************arrange with start***************/
-void arr(int start){
+void arrange(int start){
     int counter=0;
     int score=0;
     int next;
-    ans[start][counter]=photos[start].id1;
+    ans[0][counter]=photos[start].id1;
     counter++;
     for(int i =start ; counter<Num_photos;){
-            int f=0;
-        for(int j=0;j<Num_photos;j++){
-            if(i==j){
-                continue;
-            }
-            if(factor(i,j)>f && photos[j].f_used==0){
-                f=factor(i,j);
-                next = j;
-            }
-        }
-        if(f==0 && i!=start){
+            int bestFactor=0;
+        for(int j=0;j<Num_photos;j++)
+            {
+                if(i==j)
+                {
+                        continue;
+                }
+                if(factor(i,j)>bestFactor && photos[j].f_used==0)
+                {
+                    bestFactor=factor(i,j);
+                    next = j;
+                }
+          }
+        if(bestFactor==0 && i!=start){
             break;
         }
         photos[i].f_used=1;
         photos[next].f_used=1;
-        ans[start][counter]=photos[next].id1;
+        ans[0][counter]=photos[next].id1;
         counter++;
         i=next;
-        score=score+f;
+        score=score+bestFactor;
     }
     counter++;
-     ans_score[score_count]=score;
+     ans_score=score;
+     //score_count++;
 
 
 }
 //-------------------------------------------------------------------------
 /*************************************find maximum score***********************************/
-int max_score(){
+/*int max_score(){
    int  maximum = ans_score[0];
     int c;
   for ( c = 1; c < score_count; c++)
@@ -195,7 +199,7 @@ int max_score(){
   }
  // printf("###############%d",maximum);
   return c;
-}
+}*/
 //-----------------------------
 /**************set used to zero**************/
 void zero(){

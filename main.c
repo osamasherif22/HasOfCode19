@@ -4,9 +4,9 @@
 
 
 int main()
-{
+ {
     LOAD();
-    /* //print the file
+     //print the file
     printf("*%d*\n",Num_photos);
 for (int i=0;i<Num_photos;i++)
 {
@@ -17,9 +17,10 @@ for (int i=0;i<Num_photos;i++)
     printf("[%s]",photos[i].tags[j]);
     }
     printf("\n");
-}*/
-for(int i=0 ; i<10000 ; i++){
-    for(int j=0 ; j<10000 ; j++){
+}
+//DP>>>>>>>>>>
+for(int i=0 ; i<2 ; i++){
+    for(int j=0 ; j<100000 ; j++){
         ans[i][j]=-1;
     }
 }
@@ -38,29 +39,44 @@ for(int i=0 ; i<10000 ; i++){
      }
      z++;
      printf(" %d\n",ans_score[score_count]);*/
-     for(int i=0;i<Num_photos;i++){
-        arr(i);
+     //for(int i=0;i<Num_photos;i++){
+        arrange(488);
         zero();
-     }
-     int x =max_score();
+     //}
+     //int x =max_score();
      int z=0;
      int co=0;
      FILE*fptr;
-    fptr=fopen("b_out.out","w+");
-     while(ans[x][z]!=-1){
-        fprintf(fptr,"%d",ans[x][z]);
+     fptr=fopen("b-fileOutput.txt","w+");
+    while(ans[0][z]!=-1){
+        printf("%d",ans[0][z]);
+        fprintf(fptr,"%d",ans[0][z]);
         co++;
-        if(photos[ans[x][z]].type=='V'){
-            fprintf(fptr," %d\n",photos[ans[x][z]].id2);
+        if(photos[ans[0][z]].type=='V'){
+            printf(" %d\n",photos[ans[0][z]].id2);
+            fprintf(fptr," %d\n",photos[ans[0][z]].id2);
+
         }
         else{
+            printf("\n");
             fprintf(fptr,"\n");
+
         }
         z++;
      }
-     fprintf(fptr,"---------------------\n");
-     fprintf(fptr," %d",co);
-     //printf("-----------close please----------\n");
+
+     printf("---------------------\n");
+     printf("%d\n",--co);
+     fseek(fptr,0,SEEK_SET);
+    fprintf(fptr,"%d\n",co);
+
+
+     printf("-----------scores----------\n");
+    //for(int m =0;m<score_count;m++){
+        printf("%d\n",ans_score);
+        //printf("max is :::%d\n",ans_score[x]);
+     //}
+     free(fptr);
 
 
 
